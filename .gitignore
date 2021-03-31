@@ -1,1 +1,17 @@
 main.cc
+cp.out
+
+# CMake
+compile_commands.json
+CMakeLists.txt.user
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+install_manifest.txt
+CTestTestfile.cmake
+_deps
+CMakeUserPresets.json
+*-prefix/
