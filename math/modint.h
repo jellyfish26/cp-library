@@ -10,8 +10,8 @@ class ModInt {
   ModInt(std::int64_t value);
   ModInt(const ModInt& target);
 
-  std::int64_t get() const;
-  ModInt inverse() const;
+  std::int64_t Get() const;
+  ModInt Inverse() const;
 
   ModInt& operator+=(const ModInt& target);
   ModInt& operator-=(const ModInt& target);
@@ -32,7 +32,7 @@ class ModInt {
   ModInt& operator=(const ModInt& target);
 
   ModInt pow(std::int64_t value) const;
-  static std::int64_t get_mod();
+  static std::int64_t GetMod();
 
   template<const std::int64_t kX>
   friend std::istream& operator>>(std::istream &stream, ModInt<kX>& target);
@@ -41,27 +41,27 @@ class ModInt {
   friend std::ostream& operator<<(std::ostream &stream, const ModInt<kX>& target);
 
  protected:
-  std::int64_t value;
+  std::int64_t value_;
 };
 
 template<const std::int64_t kMod>
-ModInt<kMod>::ModInt() : value(0) {}
+ModInt<kMod>::ModInt() : value_(0) {}
 
 template<const std::int64_t kMod>
 ModInt<kMod>::ModInt(std::int64_t value)
-    : value(value >= 0 ? value % kMod : kMod - ((-kMod) % kMod)) {}
+    : value_(value >= 0 ? value % kMod : kMod - ((-kMod) % kMod)) {}
 
 template<const std::int64_t kMod>
-ModInt<kMod>::ModInt(const ModInt& target) : value(target.value) {}
+ModInt<kMod>::ModInt(const ModInt& target) : value_(target.value) {}
 
 template<const std::int64_t kMod>
-std::int64_t ModInt<kMod>::get() const {
-  return value;
+std::int64_t ModInt<kMod>::Get() const {
+  return value_;
 }
 
 template<const std::int64_t kMod>
-ModInt<kMod> ModInt<kMod>::inverse() const {
-  std::int64_t base = value, p = kMod, u = 1, v = 0;
+ModInt<kMod> ModInt<kMod>::Inverse() const {
+  std::int64_t base = value_, p = kMod, u = 1, v = 0;
   while(p) {
     std::int64_t tmp = base / p;
     std::swap(base -= tmp * p, p);
@@ -72,18 +72,18 @@ ModInt<kMod> ModInt<kMod>::inverse() const {
 
 template<const std::int64_t kMod>
 ModInt<kMod>& ModInt<kMod>::operator+=(const ModInt& target) {
-  this->value += target.value;
-  if (value >= kMod) {
-    value -= kMod;
+  this->value_ += target.value_;
+  if (value_ >= kMod) {
+    value_ -= kMod;
   }
   return *this;
 }
 
 template<const std::int64_t kMod>
 ModInt<kMod>& ModInt<kMod>::operator-=(const ModInt& target) {
-  value += (kMod - target.value);
-  if (value >= kMod) {
-    value -= kMod;
+  value_ += (kMod - target.value_);
+  if (value_ >= kMod) {
+    value_ -= kMod;
   }
   return *this;
 }
@@ -91,13 +91,13 @@ ModInt<kMod>& ModInt<kMod>::operator-=(const ModInt& target) {
 
 template<const std::int64_t kMod>
 ModInt<kMod>& ModInt<kMod>::operator*=(const ModInt& target) {
-  value = value * target.value % kMod;
+  value_ = value_ * target.value_ % kMod;
   return *this;
 }
 
 template<const std::int64_t kMod>
 ModInt<kMod>& ModInt<kMod>::operator/=(const ModInt& target) {
-  *this *= target.inverse();
+  *this *= target.Inverse();
   return *this;
 }
 
@@ -123,7 +123,7 @@ ModInt<kMod> ModInt<kMod>::operator/(const ModInt& target) const {
 
 template<const std::int64_t kMod>
 ModInt<kMod> ModInt<kMod>::operator-() const {
-  return ModInt(-value);
+  return ModInt(-value_);
 }
 
 template<const std::int64_t kMod>
@@ -140,7 +140,7 @@ ModInt<kMod>& ModInt<kMod>::operator=(const ModInt& target) {
 
 template<const std::int64_t kMod>
 ModInt<kMod> ModInt<kMod>::pow(std::int64_t n) const {
-  ModInt ret(1), x(value);
+  ModInt ret(1), x(value_);
   while (n > 0) {
     if (n&1) ret *= x;
     x *= x;
@@ -150,7 +150,7 @@ ModInt<kMod> ModInt<kMod>::pow(std::int64_t n) const {
 }
 
 template<const std::int64_t kMod>
-std::int64_t ModInt<kMod>::get_mod() {
+std::int64_t ModInt<kMod>::GetMod() {
   return kMod;
 }
 
@@ -164,5 +164,5 @@ std::istream& operator>>(std::istream& stream, ModInt<kMod>& target) {
 
 template<const std::int64_t kMod>
 std::ostream& operator<<(std::ostream& stream, const ModInt<kMod>& target) {
-  return stream << target.get();
+  return stream << target.Get();
 }
