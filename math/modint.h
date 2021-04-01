@@ -52,7 +52,7 @@ ModInt<kMod>::ModInt(std::int64_t value)
     : value_(value >= 0 ? value % kMod : kMod - ((-kMod) % kMod)) {}
 
 template<const std::int64_t kMod>
-ModInt<kMod>::ModInt(const ModInt& target) : value_(target.value) {}
+ModInt<kMod>::ModInt(const ModInt& target) : value_(target.value_) {}
 
 template<const std::int64_t kMod>
 std::int64_t ModInt<kMod>::Get() const {
@@ -128,13 +128,13 @@ ModInt<kMod> ModInt<kMod>::operator-() const {
 
 template<const std::int64_t kMod>
 ModInt<kMod>& ModInt<kMod>::operator=(std::int64_t value) {
-  this->value = value;
+  this->value_ = value;
   return *this;
 }
 
 template<const std::int64_t kMod>
 ModInt<kMod>& ModInt<kMod>::operator=(const ModInt& target) {
-  this->value = target.value;
+  this->value_ = target.value_;
   return *this;
 }
 
