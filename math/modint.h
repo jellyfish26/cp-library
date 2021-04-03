@@ -31,7 +31,7 @@ class ModInt {
   ModInt& operator=(std::int64_t value);
   ModInt& operator=(const ModInt& target);
 
-  ModInt pow(std::int64_t value) const;
+  ModInt Pow(std::int64_t value) const;
   static std::int64_t GetMod();
 
   template<const std::int64_t kX>
@@ -139,7 +139,7 @@ ModInt<kMod>& ModInt<kMod>::operator=(const ModInt& target) {
 }
 
 template<const std::int64_t kMod>
-ModInt<kMod> ModInt<kMod>::pow(std::int64_t n) const {
+ModInt<kMod> ModInt<kMod>::Pow(std::int64_t n) const {
   ModInt ret(1), x(value_);
   while (n > 0) {
     if (n&1) ret *= x;
