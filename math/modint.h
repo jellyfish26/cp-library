@@ -49,7 +49,7 @@ ModInt<kMod>::ModInt() : value_(0) {}
 
 template<const std::int64_t kMod>
 ModInt<kMod>::ModInt(std::int64_t value)
-    : value_(value >= 0 ? value % kMod : kMod - ((-kMod) % kMod)) {}
+    : value_(value >= 0 ? value % kMod : kMod - ((-value) % kMod)) {}
 
 template<const std::int64_t kMod>
 ModInt<kMod>::ModInt(const ModInt& target) : value_(target.value_) {}
