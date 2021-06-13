@@ -1,10 +1,8 @@
 #pragma once
-#include <bits/c++config.h>
 #include <cstdint>
-#include <type_traits>
 #include <vector>
 
-#include "modint.h"
+#include "modint.hpp"
 
 template<const std::int64_t kMod>
 class Combination {

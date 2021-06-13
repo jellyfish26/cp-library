@@ -16,3 +16,5 @@ _deps
 CMakeUserPresets.json
 *-prefix/
 .cache/
+
+*.a

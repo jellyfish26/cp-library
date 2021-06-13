@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 
-#include "edge.h"
+#include "edge.hpp"
 
 template<class T>
 class Dijkstra {
